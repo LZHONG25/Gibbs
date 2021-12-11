@@ -1,0 +1,58 @@
+---
+title: "Gibbs"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Gibbs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Function gibbs() can be found in R package Gibbs.
+```{r setup}
+library(Gibbs)
+```
+Function gibbs() can be used to do Gibbs sampling for simple linear regression with one parameter and one outcome. Gibbs sampling is one way (among many) to estimate a Bayesian model, to determine the best value of a parameter by generating a Markov chain of samples.
+
+To use the gibbs() function, we need to get a set of independent values -- X, a set of dependent values corresponding to the independent values -- Y, and the number of the values -- n. Then we can fit in the gibbs() function using these values.
+
+Aftering fitting the function, we get the following outputs:
+
+GibbsSampleResult: This is a 30000*3 dataset with results of sampling for 30000 times. It includes 3 columns: Intercept -- the sampling intercept for Y~X, Slope -- the sampling slope for Y~X, sigma2 -- the sampling variance of residuals for Y~X.
+
+GibbsSampleSummary: This is a 3*4 matrix with summaries of mean, standard deviation, 2.5% quantile, 97.5% quantile for Intercept, Slope and sigma2.
+
+SD_Comparison: This is a 2*2 matrix of comparisons between sampling standard deviation and ordinary least square deviation for Intercept and Slope.
+
+Plot of X (Variate) and Y (Response) with fitted line from OLS.
+
+Histogram of the posterior slope -- which looks normally distributed.
+
+Plot of X (Variate) and Y (Response), with the fitted line of Intercept mean and Slope mean from sampling.
+
+Here is an example using a data set containing 67 rows of female babies named as 'Sophia', who were born after year 1950. We regress the log odds of a baby being named 'Sophia' (Y) onto the year (X). To improve convergence we standardize X first.
+```{r}
+library(Gibbs)
+library(babynames)
+X   <- scale(dat$year)
+p   <- dat$prop
+Y   <- log(p/(1-p))
+n   <- length(X)
+
+gibbs(X, Y, n)
+```
+From the out put we can see that the intercept for OLS is -7.188, the slope for OLS is 1.547. Also GibbsSampleSummary table, SD_Comparison table, plot of X and Y with fitted line from OLS, histogram of the posterior slope, plot of X and y with the fitted line of Intercept mean and Slope mean from sampling. We can also take a look at the first fews rows of the GibbsSampleResult.
+```{r}
+head(GibbsSampleResult)
+```
+
+
+
+

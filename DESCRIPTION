@@ -1,0 +1,20 @@
+Package: Gibbs
+Title: Gibbs sampling package.
+Version: 0.0.0.9000
+Authors@R: 
+    person("Luer", "Zhong", , "luerzhong@ufl.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: This package is used to do Gibbs sampling for simple linear regression with one parameter and one outcome.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Depends: 
+    R (>= 2.10)
+LazyData: true
+Suggests: 
+    rmarkdown,
+    knitr,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
