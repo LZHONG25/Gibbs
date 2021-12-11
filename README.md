@@ -1,4 +1,5 @@
 # Gibbs
+<<<<<<< HEAD
 
 # This package is used to do Gibbs sampling for simple linear regression with one parameter and one outcome
 
@@ -8,3 +9,5 @@
 
 # How to install
 `devtools::install_github('LZHONG25/Gibbs', build_vignettes = TRUE, force = TRUE)`
+=======
+>>>>>>> 41b1465756d1c8b9eb6f4be98476389f13401415
