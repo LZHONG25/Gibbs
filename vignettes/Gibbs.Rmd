@@ -40,7 +40,7 @@ Plot of X (Variate) and Y (Response), with the fitted line of Intercept mean and
 Here is an example using a data set containing 67 rows of female babies named as 'Sophia', who were born after year 1950. We regress the log odds of a baby being named 'Sophia' (Y) onto the year (X). To improve convergence we standardize X first.
 ```{r}
 library(Gibbs)
-library(babynames)
+data(dat)
 X   <- scale(dat$year)
 p   <- dat$prop
 Y   <- log(p/(1-p))
